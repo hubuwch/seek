@@ -29,13 +29,21 @@
 - 站点：`gov.cn`、`stats.gov.cn`
 
 ### 第二步：应用站点约束
-格式：`{压缩后的查询} site:{主域名} OR site:{次域名}`
+约束后格式如下：
+```json
+{
+  "targeted_query": "<关键词> site:<域名>",
+  "sites": ["<域名>"],
+  "domain_category": "<类别>",
+  "estimated_precision_boost": "XX%"
+}
+```
 
-如果有多个域名：使用 `OR` 允许任一
+如果有多个域名：将所有域名添加到 `sites` 数组中。
 如果只有一个最佳域名：只使用该域名
 
 ### 第三步：输出
-返回可直接用于搜索 API 的完整查询字符串。
+返回绑定结果（JSON格式）
 
 ## 领域映射表
 
@@ -44,7 +52,8 @@
 | 政策法规（国内） | site:gov.cn | site:pkulaw.com |
 | 政策法规（欧盟） | site:europa.eu | - |
 | 编程技术 | site:stackoverflow.com | site:docs.python.org |
-| 学术文献 | site:arxiv.org | site:aclweb.org |
+| 学术文献(国外) | site:arxiv.org | site:aclweb.org |
+| 学术文献(国内) | site:ncpssd.cn | site:pubscholar.cn |site:nstl.gov.cn|
 | 行业数据 | site:gov.cn | site:marklines.com |
 | 通用百科 | site:wikipedia.org | site:baike.baidu.com |
 | Linux/服务器 | site:wiki.archlinux.org | site:nginx.org |
@@ -52,7 +61,8 @@
 ## 输出格式
 ```json
 {
-  "targeted_query": "<关键词> site:<域名>",
+  "targeted_query": "<关键词>",
+  "sites": ["<域名>"],
   "domain_category": "<类别>",
   "estimated_precision_boost": "XX%"
 }
