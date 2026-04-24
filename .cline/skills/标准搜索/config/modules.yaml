@@ -1,0 +1,163 @@
+# 标准搜索技能 - 模块配置
+# 此文件定义了各个模块的配置和依赖关系
+
+# 模块注册表
+modules:
+  # 查询压缩模块
+  query_compressor:
+    name: "查询压缩器"
+    description: "负责将自然语言查询压缩为关键词"
+    class: "QueryCompressor"
+    enabled: true
+    priority: 1
+    dependencies: []
+    config:
+      max_keywords: 7
+      min_keywords: 2
+      remove_stopwords: true
+      detect_answer_type: true
+      answer_types:
+        - "定义"
+        - "步骤"
+        - "数据"
+        - "对比"
+        - "故障排查"
+        - "列举"
+      language: "auto"
+      token_saving_goal: 40
+      fallback_to_original: true
+
+  # 站点绑定模块
+  site_binder:
+    name: "站点绑定器"
+    description: "负责为查询添加site约束"
+    class: "SiteBinder"
+    enabled: true
+    priority: 2
+    dependencies: ["query_compressor"]
+    config:
+      use_domain_detection: true
+      max_sites_per_query: 3
+      min_authority_score: 80
+      combine_operator: "OR"
+      include_backup_sites: true
+      prefer_local_sites: true
+      language_preference: ["zh", "en"]
+      fallback_to_general: true
+      estimate_precision_boost: true
+
+  # 配置加载模块
+  config_loader:
+    name: "配置加载器"
+    description: "负责加载和管理配置文件"
+    class: "ConfigLoader"
+    enabled: true
+    priority: 0
+    dependencies: []
+    config:
+      config_path: "./config"
+      cache_configs: true
+      cache_ttl_seconds: 300
+      hot_reload: true
+      validation_strict: false
+      fallback_to_defaults: true
+      log_config_changes: true
+
+  # 缓存模块 (可选)
+  cache:
+    name: "缓存管理器"
+    description: "负责查询结果缓存"
+    class: "CacheManager"
+    enabled: false
+    priority: 3
+    dependencies: ["query_compressor", "site_binder"]
+    config:
+      cache_enabled: false
+      cache_ttl_minutes: 60
+      max_cache_size: 1000
+      cache_strategy: "lru"
+      persist_cache: false
+      cache_path: "./cache"
+
+  # 日志模块 (可选)
+  logger:
+    name: "日志记录器"
+    description: "负责记录搜索过程日志"
+    class: "Logger"
+    enabled: false
+    priority: 4
+    dependencies: []
+    config:
+      log_level: "info"
+      log_to_file: false
+      log_file_path: "./logs"
+      max_log_files: 10
+      log_format: "json"
+      enable_metrics: false
+
+  # 监控模块 (可选)
+  monitor:
+    name: "性能监控器"
+    description: "负责监控性能指标"
+    class: "Monitor"
+    enabled: false
+    priority: 5
+    dependencies: []
+    config:
+      collect_metrics: false
+      metrics_interval_seconds: 60
+      alert_thresholds:
+        response_time_ms: 1000
+        error_rate_percent: 5
+        cache_hit_rate: 70
+      enable_alerts: false
+
+# 模块加载配置
+loading:
+  auto_discover_modules: true
+  module_path: "./modules"
+  require_module_registration: true
+  validate_dependencies: true
+  circular_dependency_check: true
+  lazy_loading: false
+
+# 模块执行配置
+execution:
+  execution_strategy: "sequential"
+  timeout_seconds: 30
+  retry_attempts: 2
+  retry_delay_ms: 100
+  continue_on_error: false
+  parallel_execution: false
+  max_parallel_modules: 3
+
+# 模块通信配置
+communication:
+  message_format: "json"
+  enable_inter_module_events: true
+  event_bus_enabled: false
+  shared_memory_enabled: false
+  max_message_size_kb: 1024
+
+# 模块扩展配置
+extensions:
+  allow_custom_modules: true
+  module_validation_strict: false
+  sandbox_custom_modules: true
+  extension_path: "./extensions"
+  approved_extensions_only: false
+
+# 模块生命周期配置
+lifecycle:
+  initialization_timeout_seconds: 10
+  shutdown_timeout_seconds: 5
+  health_check_interval_seconds: 30
+  module_restart_on_failure: true
+  max_restart_attempts: 3
+
+# 默认模块配置
+defaults:
+  default_modules: ["config_loader", "query_compressor", "site_binder"]
+  required_modules: ["config_loader", "query_compressor"]
+  optional_modules: ["cache", "logger", "monitor"]
+  module_config_template: "./templates/module_config.json"

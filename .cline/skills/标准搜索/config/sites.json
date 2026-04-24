@@ -1,0 +1,214 @@
+{
+  "version": "1.0.0",
+  "description": "标准搜索技能 - 站点权威性配置",
+  "last_updated": "2025-04-20",
+  
+  "sites": {
+    "stackoverflow.com": {
+      "name": "Stack Overflow",
+      "description": "全球最大的编程问答社区",
+      "domain_categories": ["programming", "linux"],
+      "authority_score": 95,
+      "language": "en",
+      "region": "global",
+      "content_type": "Q&A",
+      "trust_level": "high",
+      "enabled": true,
+      "priority": 1,
+      "max_results": 5,
+      "site_operator": "site:stackoverflow.com"
+    },
+    
+    "docs.python.org": {
+      "name": "Python官方文档",
+      "description": "Python编程语言官方文档",
+      "domain_categories": ["programming"],
+      "authority_score": 98,
+      "language": "en",
+      "region": "global",
+      "content_type": "Documentation",
+      "trust_level": "very_high",
+      "enabled": true,
+      "priority": 1,
+      "max_results": 3,
+      "site_operator": "site:docs.python.org"
+    },
+    
+    "developer.mozilla.org": {
+      "name": "MDN Web Docs",
+      "description": "Web技术文档，由Mozilla维护",
+      "domain_categories": ["programming"],
+      "authority_score": 96,
+      "language": "en",
+      "region": "global",
+      "content_type": "Documentation",
+      "trust_level": "very_high",
+      "enabled": true,
+      "priority": 1,
+      "max_results": 3,
+      "site_operator": "site:developer.mozilla.org"
+    },
+    
+    "gov.cn": {
+      "name": "中国政府网",
+      "description": "中国政府官方网站",
+      "domain_categories": ["policy", "industry"],
+      "authority_score": 99,
+      "language": "zh",
+      "region": "cn",
+      "content_type": "Official",
+      "trust_level": "very_high",
+      "enabled": true,
+      "priority": 1,
+      "max_results": 5,
+      "site_operator": "site:gov.cn"
+    },
+    
+    "europa.eu": {
+      "name": "欧盟官方网站",
+      "description": "欧洲联盟官方网站",
+      "domain_categories": ["policy"],
+      "authority_score": 97,
+      "language": "en",
+      "region": "eu",
+      "content_type": "Official",
+      "trust_level": "very_high",
+      "enabled": true,
+      "priority": 2,
+      "max_results": 3,
+      "site_operator": "site:europa.eu"
+    },
+    
+    "arxiv.org": {
+      "name": "arXiv",
+      "description": "学术论文预印本数据库",
+      "domain_categories": ["academic"],
+      "authority_score": 94,
+      "language": "en",
+      "region": "global",
+      "content_type": "Academic",
+      "trust_level": "high",
+      "enabled": true,
+      "priority": 1,
+      "max_results": 5,
+      "site_operator": "site:arxiv.org"
+    },
+    
+    "aclweb.org": {
+      "name": "ACL Anthology",
+      "description": "计算语言学学术论文库",
+      "domain_categories": ["academic"],
+      "authority_score": 92,
+      "language": "en",
+      "region": "global",
+      "content_type": "Academic",
+      "trust_level": "high",
+      "enabled": true,
+      "priority": 2,
+      "max_results": 3,
+      "site_operator": "site:aclweb.org"
+    },
+    
+    "stats.gov.cn": {
+      "name": "国家统计局",
+      "description": "中国国家统计局官方网站",
+      "domain_categories": ["industry"],
+      "authority_score": 98,
+      "language": "zh",
+      "region": "cn",
+      "content_type": "Official Data",
+      "trust_level": "very_high",
+      "enabled": true,
+      "priority": 1,
+      "max_results": 5,
+      "site_operator": "site:stats.gov.cn"
+    },
+    
+    "wikipedia.org": {
+      "name": "维基百科",
+      "description": "多语言网络百科全书",
+      "domain_categories": ["general"],
+      "authority_score": 90,
+      "language": "multi",
+      "region": "global",
+      "content_type": "Encyclopedia",
+      "trust_level": "medium",
+      "enabled": true,
+      "priority": 1,
+      "max_results": 3,
+      "site_operator": "site:wikipedia.org"
+    },
+    
+    "baike.baidu.com": {
+      "name": "百度百科",
+      "description": "中文网络百科全书",
+      "domain_categories": ["general"],
+      "authority_score": 85,
+      "language": "zh",
+      "region": "cn",
+      "content_type": "Encyclopedia",
+      "trust_level": "medium",
+      "enabled": true,
+      "priority": 2,
+      "max_results": 3,
+      "site_operator": "site:baike.baidu.com"
+    },
+    
+    "wiki.archlinux.org": {
+      "name": "Arch Linux Wiki",
+      "description": "Arch Linux官方Wiki",
+      "domain_categories": ["linux"],
+      "authority_score": 93,
+      "language": "en",
+      "region": "global",
+      "content_type": "Documentation",
+      "trust_level": "high",
+      "enabled": true,
+      "priority": 1,
+      "max_results": 3,
+      "site_operator": "site:wiki.archlinux.org"
+    },
+    
+    "nginx.org": {
+      "name": "Nginx官方文档",
+      "description": "Nginx Web服务器官方文档",
+      "domain_categories": ["linux"],
+      "authority_score": 96,
+      "language": "en",
+      "region": "global",
+      "content_type": "Documentation",
+      "trust_level": "very_high",
+      "enabled": true,
+      "priority": 2,
+      "max_results": 2,
+      "site_operator": "site:nginx.org"
+    }
+  },
+  
+  "domain_mappings": {
+    "programming": ["stackoverflow.com", "docs.python.org", "developer.mozilla.org"],
+    "policy": ["gov.cn", "europa.eu"],
+    "academic": ["arxiv.org", "aclweb.org"],
+    "industry": ["stats.gov.cn", "gov.cn"],
+    "general": ["wikipedia.org", "baike.baidu.com"],
+    "linux": ["wiki.archlinux.org", "nginx.org", "stackoverflow.com"]
+  },
+  
+  "selection_rules": {
+    "max_sites_per_domain": 3,
+    "min_authority_score": 80,
+    "prefer_local_sites": true,
+    "language_preference": ["zh", "en"],
+    "fallback_to_general": true,
+    "combine_multiple_domains": true,
+    "site_operator_format": "site:{domain}",
+    "combine_operator": "OR"
+  },
+  
+  "validation": {
+    "check_site_availability": true,
+    "update_frequency_days": 30,
+    "auto_disable_failed_sites": true,
+    "backup_sites_enabled": true
+  }
+}
