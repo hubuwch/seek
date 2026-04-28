@@ -46,14 +46,14 @@ description: "完整的搜索流程，包含查询压缩、站点绑定和脚本
 使用 `../scripts/VolcWebSearch.py` 执行搜索：
 
 ```bash
-python ../scripts/VolcWebSearch.py "<搜索关键词>" --count 2 --sites "stackoverflow.com|docs.python.org"
+python ../scripts/VolcWebSearch.py "<搜索关键词>" --count 3 --sites "stackoverflow.com|docs.python.org"
 ```
 
 **参数说明：**
 | 参数 | 说明 | 默认值 |
 |------|------|--------|
 | `query` | 搜索关键词 | 必填 |
-| `--count` | 返回条数（最大5） | 2 |
+| `--count` | 返回条数（最大3） | 2 |
 | `--sites` | 指定站点（多站点用 `\|` 分隔） | 空 |
 
 ## 输入格式
@@ -142,7 +142,7 @@ python ../scripts/VolcWebSearch.py "<搜索关键词>" --count 2 --sites "stacko
 
 **Step 3 - 搜索调用：**
 ```bash
-python ../scripts/VolcWebSearch.py "Python 列表 排序 示例" --count 5 --sites "stackoverflow.com|docs.python.org"
+python ../scripts/VolcWebSearch.py "Python 列表 排序 示例" --count 3 --sites "stackoverflow.com|docs.python.org"
 ```
 
 **最终结果：**
@@ -263,6 +263,7 @@ python ../scripts/VolcWebSearch.py "Python 列表 排序 示例" --count 5 --sit
 | 问题太短（<5词） | 保持原查询不做压缩 |
 | 包含代码/技术术语 | 原样保留不删除 |
 | 无法识别领域 | 默认使用通用百科或stackoverflow.com |
+| 未配置 API Key | 直接提示用户配置 API Key，禁止基于已有知识回答 |
 
 ## 性能优化技巧
 
